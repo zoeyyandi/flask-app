@@ -2,11 +2,13 @@ from flask import jsonify, request
 from app import app
 from app.logic import add, subtract, multiply, square, divide
 from werkzeug.exceptions import BadRequest
+from http import HTTPStatus
+from app.exceptions import NotFoundClientError, BadRequestClientError, ClientError
 
 @app.before_request
 def check_json():
     if request.method in ['POST', 'PUT'] and not request.is_json:
-        raise BadRequest("Request must be JSON")
+        raise BadRequestClientError()
 
 @app.route('/', methods=['GET'])
 def home():
@@ -19,7 +21,7 @@ def get_required_params(data, params):
     try:
         return [float(data[p]) for p in params]
     except ValueError:
-        raise BadRequest("Parameters must be numbers")
+        raise BadRequestClientError("Values are invalid!!")
 
 @app.route('/add', methods=['POST'])
 def add_endpoint():
@@ -64,11 +66,14 @@ def divide_endpoint():
 def add_options():
     return '', 200
 
-@app.errorhandler(BadRequest)
+@app.errorhandler(ClientError)
 def handle_bad_request(e):
-    if "Failed to decode JSON object" in str(e) or "Request must be JSON" in str(e):
-        return jsonify({'error': 'Request must be JSON'}), 400
-    return jsonify({'error': str(e)}), 400
+    return jsonify(e.to_json())
+    # return jsonify(status_code=e.status_code, message=e.message)
+    # if "Failed to decode JSON object" in str(e) or "Request must be JSON" in str(e):
+    #     return jsonify({'error': 'Request must be JSON'}), HTTPStatus.BAD_REQUEST
+    # return jsonify({'error': str(e)}), HTTPStatus.BAD_REQUEST
+
 
 @app.errorhandler(404)
 def not_found(e):
