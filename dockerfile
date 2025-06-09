@@ -8,10 +8,10 @@ RUN pip install --no-cache-dir poetry==2.1.2
 
 RUN poetry --version
 
-RUN poetry install --no-root
+RUN poetry install --no-root --no-dev
 
 COPY . .
 
-EXPOSE 5000
+EXPOSE 4500
 
 CMD ["poetry", "run", "python", "run.py"]

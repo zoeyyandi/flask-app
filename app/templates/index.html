@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Profile Viewer</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #121212;
+            color: white;
+        }
+        .container {
+            text-align: center;
+            padding: 40px;
+            max-width: 600px;
+        }
+        .logo {
+            width: 200px;
+            margin-bottom: 30px;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #1DB954;
+        }
+        p {
+            font-size: 1.2em;
+            color: #b3b3b3;
+            margin-bottom: 40px;
+        }
+        .login-button {
+            display: inline-block;
+            background-color: #1DB954;
+            color: white;
+            text-decoration: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .login-button:hover {
+            background-color: #1ed760;
+        }
+        .features {
+            margin-top: 60px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: left;
+        }
+        .feature {
+            background-color: #282828;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .feature h3 {
+            color: #1DB954;
+            margin-top: 0;
+        }
+        .feature p {
+            font-size: 1em;
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_RGB_White.png" alt="Spotify Logo" class="logo">
+        <h1>Welcome to Spot</h1>
+        <p>View your Spotify profile information and connect with your music world</p>
+        <a href="/login" class="login-button">Login with Spotify</a>
+        
+        <div class="features">
+            <div class="feature">
+                <h3>Profile Info</h3>
+                <p>View your display name, email, and account details</p>
+            </div>
+            <div class="feature">
+                <h3>Followers</h3>
+                <p>See how many followers you have on Spotify</p>
+            </div>
+            <div class="feature">
+                <h3>Account Type</h3>
+                <p>Check your Spotify subscription status</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
