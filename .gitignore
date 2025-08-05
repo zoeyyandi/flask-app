@@ -2,4 +2,7 @@ echo "venv/
 *.pyc
 __pycache__/
 .env
-*.swp" > .gitignore
+*.swp" > .gitignore*.log
+logs/
+node_modules/
+spot-ui/node_modules/
