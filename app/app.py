@@ -1,6 +1,7 @@
 from flask import Flask, redirect, session, request, render_template
 from dotenv import load_dotenv
 import os
+import traceback
 from app.spotify import get_auth_url, get_access_token, get_profile, get_top_artists, get_top_tracks
 
 load_dotenv()
@@ -25,13 +26,13 @@ def callback():
 @app.route('/profile')
 def profile():
     if 'access_token' not in session:
-        return render_template('profile.html', error="Not authenticated. Please log in first.")
+        return render_template('profile.html', error='Not authenticated. Please log in first.')
     
     try:
         # Get user profile data
         profile_data = get_profile(session['access_token'])
         if not profile_data:
-            raise Exception("Failed to get profile data")
+            raise Exception('Failed to get profile data')
         
         # Get user's top artists and top tracks
         top_artists_response = get_top_artists(session['access_token'])
@@ -44,11 +45,7 @@ def profile():
                              top_tracks=top_tracks_response.get('items', []))
     
     except Exception as e:
-        print(f"Error in profile route: {str(e)}")
-        print(f"Error type: {type(e)}")
-        import traceback
-        print(f"Traceback: {traceback.format_exc()}")
-        return render_template('profile.html', error=f"Failed to get Spotify profile info: {str(e)}")
-
-if __name__ == '__main__':
-    app.run(debug=True)
+        print(f'Error in profile route: {str(e)}')
+        print(f'Error type: {type(e)}')
+        print(f'Traceback: {traceback.format_exc()}')
+        return render_template('profile.html', error=f'Failed to get Spotify profile info: {str(e)}')
