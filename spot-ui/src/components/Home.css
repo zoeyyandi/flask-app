@@ -1,0 +1,138 @@
+.home {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #121212 0%, #000000 50%, #1DB954 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  color: var(--spotify-text);
+  padding: 20px;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.container {
+  text-align: center;
+  padding: 40px;
+  max-width: 600px;
+  background: rgba(18, 18, 18, 0.8);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+  width: 200px;
+  margin-bottom: 30px;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+h1 {
+  font-size: 3.5em;
+  margin-bottom: 20px;
+  color: var(--spotify-green);
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: -0.02em;
+}
+
+p {
+  font-size: 1.3em;
+  color: var(--spotify-text-secondary);
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.login-button {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--spotify-green) 0%, var(--spotify-green-hover) 100%);
+  color: var(--spotify-text);
+  text-decoration: none;
+  padding: 18px 48px;
+  border-radius: 50px;
+  font-size: 1.2em;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 16px rgba(29, 185, 84, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.login-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(29, 185, 84, 0.4);
+  background: linear-gradient(135deg, var(--spotify-green-hover) 0%, #1DB954 100%);
+}
+
+.authenticated-actions {
+  margin-bottom: 40px;
+}
+
+.profile-button {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--spotify-green) 0%, var(--spotify-green-hover) 100%);
+  color: var(--spotify-text);
+  text-decoration: none;
+  padding: 18px 48px;
+  border-radius: 50px;
+  font-size: 1.2em;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 16px rgba(29, 185, 84, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.profile-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(29, 185, 84, 0.4);
+  background: linear-gradient(135deg, var(--spotify-green-hover) 0%, #1DB954 100%);
+}
+
+.features {
+  margin-top: 60px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  text-align: left;
+}
+
+.feature {
+  background: rgba(40, 40, 40, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.feature:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+  background: rgba(40, 40, 40, 0.9);
+}
+
+.feature h3 {
+  color: var(--spotify-green);
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 1.4em;
+  font-weight: 600;
+}
+
+.feature p {
+  font-size: 1em;
+  margin-bottom: 0;
+  color: var(--spotify-text-secondary);
+  line-height: 1.5;
+} 
