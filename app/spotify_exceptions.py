@@ -2,7 +2,8 @@ from app.exceptions import ClientError
 from werkzeug.exceptions import (
     InternalServerError,
     Unauthorized,
-    BadRequest
+    BadRequest,
+    NotFound
 )
 
 class SpotifyError(ClientError):
@@ -24,6 +25,11 @@ class SpotifyAPIError(SpotifyError):
     """Errors from Spotify API responses"""
     status_code = BadRequest.code
     message = "SPOTIFY_API_ERROR"
+    
+    def __init__(self, message=None, status_code=None):
+        super().__init__(message)
+        if status_code:
+            self.status_code = status_code
 
 class SpotifyInvalidResponseError(SpotifyError):
     """Errors related to invalid response format"""
