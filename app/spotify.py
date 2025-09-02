@@ -191,3 +191,159 @@ def get_top_tracks(access_token, time_range='medium_term', limit=20):
     except requests.RequestException as e:
         logger.error(f"Network error while requesting top tracks: {e}")
         raise SpotifyAPIError(f"Network error: {e}")
+
+def get_artist(access_token, artist_id):
+    """Get a specific artist from Spotify API"""
+    logger.info(f"Fetching artist {artist_id} from Spotify API")
+    
+    if not access_token:
+        logger.error("Access token is missing for artist request")
+        raise SpotifyTokenError("Access token is required")
+    
+    if not artist_id:
+        logger.error("Artist ID is missing")
+        raise SpotifyAPIError("Artist ID is required")
+    
+    logger.debug("Making request to Spotify artist endpoint")
+    
+    try:
+        response = requests.get(
+            f"https://api.spotify.com/v1/artists/{artist_id}",
+            headers={"Authorization": f"Bearer {access_token}"}
+        )
+        
+        logger.debug(f"Artist request response status: {response.status_code}")
+        
+        if response.status_code == 404:
+            logger.warning(f"Artist {artist_id} not found")
+            raise SpotifyAPIError("Artist not found", status_code=404)
+        
+        if response.status_code != 200:
+            error_msg = response.json().get('error', {}).get('message', 'Unknown error')
+            logger.error(f"Failed to get artist. Status: {response.status_code}, Error: {error_msg}")
+            raise SpotifyAPIError(f"Failed to get artist: {error_msg}")
+        
+        artist_data = response.json()
+        logger.info(f"Successfully retrieved artist: {artist_data.get('name', 'Unknown')}")
+        return artist_data
+        
+    except requests.RequestException as e:
+        logger.error(f"Network error while requesting artist: {e}")
+        raise SpotifyAPIError(f"Network error: {e}")
+
+def get_album(access_token, album_id):
+    """Get a specific album from Spotify API"""
+    logger.info(f"Fetching album {album_id} from Spotify API")
+    
+    if not access_token:
+        logger.error("Access token is missing for album request")
+        raise SpotifyTokenError("Access token is required")
+    
+    if not album_id:
+        logger.error("Album ID is missing")
+        raise SpotifyAPIError("Album ID is required")
+    
+    logger.debug("Making request to Spotify album endpoint")
+    
+    try:
+        response = requests.get(
+            f"https://api.spotify.com/v1/albums/{album_id}",
+            headers={"Authorization": f"Bearer {access_token}"}
+        )
+        
+        logger.debug(f"Album request response status: {response.status_code}")
+        
+        if response.status_code == 404:
+            logger.warning(f"Album {album_id} not found")
+            raise SpotifyAPIError("Album not found", status_code=404)
+        
+        if response.status_code != 200:
+            error_msg = response.json().get('error', {}).get('message', 'Unknown error')
+            logger.error(f"Failed to get album. Status: {response.status_code}, Error: {error_msg}")
+            raise SpotifyAPIError(f"Failed to get album: {error_msg}")
+        
+        album_data = response.json()
+        logger.info(f"Successfully retrieved album: {album_data.get('name', 'Unknown')}")
+        return album_data
+        
+    except requests.RequestException as e:
+        logger.error(f"Network error while requesting album: {e}")
+        raise SpotifyAPIError(f"Network error: {e}")
+
+def get_track(access_token, track_id):
+    """Get a specific track from Spotify API"""
+    logger.info(f"Fetching track {track_id} from Spotify API")
+    
+    if not access_token:
+        logger.error("Access token is missing for track request")
+        raise SpotifyTokenError("Access token is required")
+    
+    if not track_id:
+        logger.error("Track ID is missing")
+        raise SpotifyAPIError("Track ID is required")
+    
+    logger.debug("Making request to Spotify track endpoint")
+    
+    try:
+        response = requests.get(
+            f"https://api.spotify.com/v1/tracks/{track_id}",
+            headers={"Authorization": f"Bearer {access_token}"}
+        )
+        
+        logger.debug(f"Track request response status: {response.status_code}")
+        
+        if response.status_code == 404:
+            logger.warning(f"Track {track_id} not found")
+            raise SpotifyAPIError("Track not found", status_code=404)
+        
+        if response.status_code != 200:
+            error_msg = response.json().get('error', {}).get('message', 'Unknown error')
+            logger.error(f"Failed to get track. Status: {response.status_code}, Error: {error_msg}")
+            raise SpotifyAPIError(f"Failed to get track: {error_msg}")
+        
+        track_data = response.json()
+        logger.info(f"Successfully retrieved track: {track_data.get('name', 'Unknown')}")
+        return track_data
+        
+    except requests.RequestException as e:
+        logger.error(f"Network error while requesting track: {e}")
+        raise SpotifyAPIError(f"Network error: {e}")
+
+def get_playlist(access_token, playlist_id):
+    """Get a specific playlist from Spotify API"""
+    logger.info(f"Fetching playlist {playlist_id} from Spotify API")
+    
+    if not access_token:
+        logger.error("Access token is missing for playlist request")
+        raise SpotifyTokenError("Access token is required")
+    
+    if not playlist_id:
+        logger.error("Playlist ID is missing")
+        raise SpotifyAPIError("Playlist ID is required")
+    
+    logger.debug("Making request to Spotify playlist endpoint")
+    
+    try:
+        response = requests.get(
+            f"https://api.spotify.com/v1/playlists/{playlist_id}",
+            headers={"Authorization": f"Bearer {access_token}"}
+        )
+        
+        logger.debug(f"Playlist request response status: {response.status_code}")
+        
+        if response.status_code == 404:
+            logger.warning(f"Playlist {playlist_id} not found")
+            raise SpotifyAPIError("Playlist not found", status_code=404)
+        
+        if response.status_code != 200:
+            error_msg = response.json().get('error', {}).get('message', 'Unknown error')
+            logger.error(f"Failed to get playlist. Status: {response.status_code}, Error: {error_msg}")
+            raise SpotifyAPIError(f"Failed to get playlist: {error_msg}")
+        
+        playlist_data = response.json()
+        logger.info(f"Successfully retrieved playlist: {playlist_data.get('name', 'Unknown')}")
+        return playlist_data
+        
+    except requests.RequestException as e:
+        logger.error(f"Network error while requesting playlist: {e}")
+        raise SpotifyAPIError(f"Network error: {e}")
